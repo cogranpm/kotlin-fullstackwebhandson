@@ -23,7 +23,27 @@ val App = functionalComponent<RProps> { _ ->
             li {
                 key = item.toString()
                 +"[${item.priority}] ${item.desc}"
+
+                attrs.onClickFunction = {
+                    scope.launch {
+                        deleteShoppingListItem(item)
+                        setShoppingList(getShoppingList())
+                    }
+                }
             }
         }
     }
+
+    child(
+        InputComponent,
+        props = jsObject {
+            onSubmit = { input ->
+                val cartItem = ShoppingListItem(input.replace("!", ""), input.count { it == '!'})
+                scope.launch {
+                    addShoppingListItem(cartItem)
+                    setShoppingList(getShoppingList())
+                }
+            }
+        }
+    )
 }
