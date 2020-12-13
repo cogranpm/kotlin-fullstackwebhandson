@@ -1,3 +1,10 @@
+/**************************************
+ *  this is the server, running ktor
+ *  has the routes for all the api's exposed to clients
+ * connects to the database on startup (Mongodb) at time of writing
+ *
+ */
+
 import com.mongodb.ConnectionString
 import io.ktor.application.*
 import io.ktor.features.*
@@ -12,15 +19,6 @@ import io.ktor.server.netty.*
 import org.litote.kmongo.coroutine.coroutine
 import org.litote.kmongo.eq
 import org.litote.kmongo.reactivestreams.KMongo
-
-/*
-val shoppingList = mutableListOf(
-    ShoppingListItem("Cucumbers", 1),
-    ShoppingListItem("Tomatoes", 2),
-    ShoppingListItem("Orange Juice", 3)
-)
-
- */
 
 val connectionString: ConnectionString? = System.getenv("MONGODB_URI")?.let {
     ConnectionString("$it?retryWrites=false")

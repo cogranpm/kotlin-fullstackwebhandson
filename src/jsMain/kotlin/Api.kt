@@ -1,3 +1,9 @@
+/*********************************************
+ * all the code for client side access to the server api's
+ * all the converting between objects and wire format (json)
+ * is done automagically by kotlin libs
+ */
+
 import io.ktor.http.*
 import io.ktor.client.*
 import io.ktor.client.request.*
